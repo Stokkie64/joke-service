@@ -9,20 +9,20 @@ import nl.ns.assignmentmicroservice.models.JokeapiResultDTO;
 import nl.ns.assignmentmicroservice.services.JokeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public class JokeController {
-    //TODO: Add integration testing
-
     @Autowired
     JokeServiceImpl service;
 
     @Autowired
     JokeMapper mapper;
 
-    @GetMapping("/")
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     JokeControllerResultDTO getHighestFrequency() {
         Joke randomJoke = service.getRandomJoke();
